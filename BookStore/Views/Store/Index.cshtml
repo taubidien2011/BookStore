@@ -1,0 +1,40 @@
+﻿@using BookStore.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SACH>
+
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<div class="col-md-8 col-lg-8">
+    <h2 style="text-align:center">SÁCH MỚI</h2>
+    @foreach (var sach in Model)
+    {
+        <div class="col-md-6 col-lg-6">
+            <div class="thumbnail" style="height:200px;text-align:center; ">
+                <a href="@Url.Action("Details", "Bookstore", new { id = sach.Masach })">
+                    <img alt="@sach.Tensach" src="../../img/@sach.Hinhminhhoa" />
+                    <div>
+                        <br />
+                        <h4>@sach.Tensach</h4>
+                        <h5>@sach.Dongia</h5>
+                    </div>
+                </a>
+            </div>
+        </div>
+    }
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page = Page }));
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+        }
+    </style>
+</div>
+    
+
+
